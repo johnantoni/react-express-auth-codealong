@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { getToken } from "../services/tokenService";
+import Logout from "./Logout";
 
 class Dashboard extends React.Component {
   state = {
@@ -39,7 +40,7 @@ class Dashboard extends React.Component {
             return <li>{JSON.stringify(todo, null, 3)}</li>;
           })}
         </ul>
-        <button>Logout</button>
+        <Logout />
       </div>
     );
   }
