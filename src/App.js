@@ -54,13 +54,12 @@ class App extends Component {
           <div>
 
           <Switch>
+
             <Route
                 exact
                 path="/login"
                 render={() =>
-                    this.state.user ?
-                    <Redirect to="/" /> :
-                    <Login getCurrentUser={this.getCurrentUser} />
+                    this.state.user ? <Redirect to="/" /> : <Login getCurrentUser={this.getCurrentUser} />
                 }
             />
 
@@ -77,13 +76,14 @@ class App extends Component {
             />
 
             <Route
-              path="/"
-              render={() =>
-                this.state.user ?
-                <Dashboard />
-                :
-                <Redirect to="/login" />
-              }
+                path="/"
+                render={() =>
+                    this.state.user ? (
+                    <Dashboard setUser={this.setUser} />
+                    ) : (
+                    <Redirect to="/login" />
+                    )
+                }
             />
 
           </Switch>

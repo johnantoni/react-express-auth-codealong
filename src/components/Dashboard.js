@@ -13,11 +13,23 @@ class Dashboard extends React.Component {
       [e.target.name]: e.target.value
     });
   };
+
   componentDidMount() {
     // 1. When the dashboard loads, get the user's token
+    const token = getToken()
     // 2. Send a GET request to /todo and pass the token to grab a list of ONLY this user's todos
-    // 3. If we get a successful response, store the todos in state.
+    axios.get('/todo', {
+        Authorization: `Bearer ${token}`
+    })
+    .then(res => {
+        if (res.status === 200) {
+            const todos = res.data.payload;
+            // 3. If we get a successful response, store the todos in   state.
+            this.setState({ todos });
+        }
+    })
   }
+
   handleSubmit = e => {
     e.preventDefault();
     const { todo } = this.state;
@@ -40,7 +52,7 @@ class Dashboard extends React.Component {
             return <li>{JSON.stringify(todo, null, 3)}</li>;
           })}
         </ul>
-        <Logout />
+        <Logout setUser={this.props.setUser} />
       </div>
     );
   }
