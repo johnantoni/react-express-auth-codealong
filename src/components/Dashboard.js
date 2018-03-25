@@ -19,7 +19,9 @@ class Dashboard extends React.Component {
     const token = getToken()
     // 2. Send a GET request to /todo and pass the token to grab a list of ONLY this user's todos
     axios.get('/todo', {
+      headers: {
         Authorization: `Bearer ${token}`
+      }
     })
     .then(res => {
         if (res.status === 200) {
