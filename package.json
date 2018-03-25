@@ -25,6 +25,10 @@
     "server": "nodemon lib/server.js",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
+  "nodemonConfig": {
+    "ignore": ["src/*"],
+    "delay": "2500"
+  },
   "proxy": "http://localhost:8080",
   "devDependencies": {
     "concurrently": "^3.5.1"
